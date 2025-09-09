@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchButton = document.getElementById('search-btn');
     
     // Ключ API (замените на свой собственный)
-    const API_KEY = 'ВАШ_API_КЛЮЧ';
+    const API_KEY = '57387b5f13cb481db9c5e6c55717909d';
     const API_URL = `https://newsapi.org/v2/everything?q=technology&language=ru&apiKey=${API_KEY}`;
     
     let allNews = [];
