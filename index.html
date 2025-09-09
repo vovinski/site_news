@@ -3,457 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Блог | Технологии и администрирование</title>
+    <title>IT Блог | Админ-панель</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary: #6e8efb;
-            --secondary: #a777e3;
-            --dark: #2d3748;
-            --light: #f8f9fa;
-            --gray: #718096;
-            --accent: #4fd1c5;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav li {
-            margin-left: 25px;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: var(--accent);
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 5rem 0;
-            text-align: center;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #38a89d;
-        }
-        
-        /* Main Content */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 30px;
-        }
-        
-        /* Blog Posts */
-        .posts-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            color: var(--dark);
-        }
-        
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        
-        .post-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .post-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .post-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .post-content {
-            padding: 20px;
-        }
-        
-        .post-category {
-            display: inline-block;
-            padding: 5px 12px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-        }
-        
-        .post-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-        
-        .post-excerpt {
-            color: var(--gray);
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-        
-        .post-meta {
-            display: flex;
-            justify-content: space-between;
-            color: var(--gray);
-            font-size: 0.85rem;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            background-color: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-            height: fit-content;
-        }
-        
-        .sidebar-widget {
-            margin-bottom: 30px;
-        }
-        
-        .widget-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary);
-            color: var(--dark);
-        }
-        
-        .categories-list {
-            list-style: none;
-        }
-        
-        .categories-list li {
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .categories-list a {
-            color: var(--dark);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .categories-list a:hover {
-            color: var(--primary);
-        }
-        
-        .categories-list span {
-            background-color: var(--light);
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-        }
-        
-        .tags-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .tag {
-            padding: 5px 12px;
-            background-color: var(--light);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--dark);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .tag:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        /* Recent posts */
-        .recent-post {
-            display: flex;
-            margin-bottom: 15px;
-            align-items: center;
-        }
-        
-        .recent-post img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-right: 15px;
-        }
-        
-        .recent-post-title {
-            font-size: 0.95rem;
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .recent-post-title:hover {
-            color: var(--primary);
-        }
-        
-        .recent-post-date {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-        
-        /* Newsletter */
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .newsletter-form input {
-            padding: 12px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .newsletter-form button {
-            padding: 12px;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s;
-        }
-        
-        .newsletter-form button:hover {
-            background-color: #5a7de0;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 40px 0 20px;
-        }
-        
-        .footer-container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .footer-widget h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-widget h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-        
-        .footer-about p {
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            color: white;
-            transition: background-color 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--accent);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--accent);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 900px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            nav ul {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero {
-                padding: 3rem 0;
-            }
-        }
-    </style>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <link rel="stylesheet" href="styles/editor.css">
+    <link rel="stylesheet" href="styles/admin.css">
 </head>
 <body>
     <!-- Header -->
@@ -469,23 +25,119 @@
                     <li><a href="#">Статьи</a></li>
                     <li><a href="#">О проекте</a></li>
                     <li><a href="#">Контакты</a></li>
+                    <li class="auth-section">
+                        <div class="auth-buttons" id="auth-buttons">
+                            <a href="#" class="auth-btn login-btn" id="login-btn">Войти</a>
+                            <a href="#" class="auth-btn register-btn" id="register-btn">Регистрация</a>
+                        </div>
+                        <div class="user-menu" id="user-menu" style="display: none;">
+                            <div class="user-avatar" id="user-avatar">A</div>
+                            <button class="auth-btn logout-btn" id="logout-btn">Выйти</button>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>IT Блог: технологии и программирование</h1>
-            <p>Изучаем современные технологии, языки программирования и лучшие практики разработки</p>
-            <a href="#posts" class="btn">Читать статьи</a>
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Вход в систему</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Пароль</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="form-submit">Войти</button>
+            </form>
+            <div class="form-footer">
+                Нет аккаунта? <a href="#" id="switch-to-register">Зарегистрироваться</a>
+            </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Регистрация</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-name">Имя</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Пароль</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password-confirm">Подтверждение пароля</label>
+                    <input type="password" id="register-password-confirm" required>
+                </div>
+                <button type="submit" class="form-submit">Зарегистрироваться</button>
+            </form>
+            <div class="form-footer">
+                Уже есть аккаунт? <a href="#" id="switch-to-login">Войти</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Editor -->
+    <div class="editor-container" id="editor-container">
+        <div class="editor-header">
+            <h2 id="editor-title">Новая статья</h2>
+            <div class="editor-actions">
+                <button class="editor-btn save-btn" id="save-post">Сохранить</button>
+                <button class="editor-btn cancel-btn" id="cancel-edit">Отмена</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="post-title">Заголовок статьи</label>
+            <input type="text" id="post-title" placeholder="Введите заголовок">
+        </div>
+        <div class="form-group">
+            <label for="post-excerpt">Краткое описание</label>
+            <textarea id="post-excerpt" placeholder="Краткое описание статьи"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="post-category">Категория</label>
+            <select id="post-category">
+                <option value="programming">Программирование</option>
+                <option value="web">Веб-разработка</option>
+                <option value="ai">Искусственный интеллект</option>
+                <option value="security">Кибербезопасность</option>
+            </select>
+        </div>
+        <div id="editor"></div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="admin-panel">
+        <div class="admin-header">
+            <h2>Управление статьями</h2>
+            <button class="create-post-btn" id="create-new-post">+ Новая статья</button>
+        </div>
+        <div class="posts-list" id="posts-list">
+            <!-- Posts will be loaded here -->
+        </div>
+    </div>
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Blog Posts -->
         <main>
             <div class="posts-header">
                 <h2 class="section-title">Последние статьи</h2>
@@ -505,7 +157,6 @@
             </div>
         </main>
 
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-widget">
                 <h3 class="widget-title">Категории</h3>
@@ -514,29 +165,7 @@
                     <li><a href="#">Веб-разработка</a> <span>12</span></li>
                     <li><a href="#">Искусственный интеллект</a> <span>8</span></li>
                     <li><a href="#">Кибербезопасность</a> <span>9</span></li>
-                    <li><a href="#">Базы данных</a> <span>7</span></li>
                 </ul>
-            </div>
-
-            <div class="sidebar-widget">
-                <h3 class="widget-title">Популярные теги</h3>
-                <div class="tags-cloud">
-                    <a href="#" class="tag">JavaScript</a>
-                    <a href="#" class="tag">Python</a>
-                    <a href="#" class="tag">React</a>
-                    <a href="#" class="tag">Node.js</a>
-                    <a href="#" class="tag">AI</a>
-                    <a href="#" class="tag">CSS</a>
-                    <a href="#" class="tag">Базы данных</a>
-                    <a href="#" class="tag">Алгоритмы</a>
-                </div>
-            </div>
-
-            <div class="sidebar-widget">
-                <h3 class="widget-title">Последние статьи</h3>
-                <div class="recent-posts">
-                    <!-- Recent posts will be loaded here -->
-                </div>
             </div>
 
             <div class="sidebar-widget">
@@ -550,208 +179,11 @@
         </aside>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-widget footer-about">
-                <h3>О нашем блоге</h3>
-                <p>IT Блог - это ресурс для разработчиков, где мы делимся знаниями о программировании, новых технологиях и лучших практиках.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-telegram"></i></a>
-                    <a href="#"><i class="fab fa-vk"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-widget">
-                <h3>Категории</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Программирование</a></li>
-                    <li><a href="#">Веб-разработка</a></li>
-                    <li><a href="#">Мобильная разработка</a></li>
-                    <li><a href="#">Искусственный интеллект</a></li>
-                    <li><a href="#">Кибербезопасность</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-widget">
-                <h3>Полезные ссылки</h3>
-                <ul class="footer-links">
-                    <li><a href="#">О нас</a></li>
-                    <li><a href="#">Контакты</a></li>
-                    <li><a href="#">Политика конфиденциальности</a></li>
-                    <li><a href="#">Условия использования</a></li>
-                    <li><a href="#">Карта сайта</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="copyright">
-            <p>&copy; 2023 IT Блог. Все права защищены.</p>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Данные статей блога
-            const blogPosts = [
-                {
-                    id: 1,
-                    title: "Основы JavaScript: современные возможности ES6+",
-                    excerpt: "Изучите новые возможности JavaScript, которые появились в стандартах ES6 и выше. Стрелочные функции, деструктуризация, шаблонные строки и многое другое.",
-                    category: "programming",
-                    image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
-                    date: "15 ноября 2023",
-                    author: "Алексей Петров",
-                    readTime: "8 мин"
-                },
-                {
-                    id: 2,
-                    title: "React против Vue: что выбрать в 2023 году?",
-                    excerpt: "Сравнительный анализ двух популярных фреймворков для фронтенд-разработки. Плюсы и минусы, особенности и рекомендации по выбору.",
-                    category: "web",
-                    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                    date: "12 ноября 2023",
-                    author: "Мария Иванова",
-                    readTime: "12 мин"
-                },
-                {
-                    id: 3,
-                    title: "Нейросети и GPT-4: как это работает?",
-                    excerpt: "Подробный раззор архитектуры и принципов работы больших языковых моделей. Объяснение технологии трансформеров и обучения нейросетей.",
-                    category: "ai",
-                    image: "https://images.unsplash.com/photo-1677442135135-416f8aa26a5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
-                    date: "10 ноября 2023",
-                    author: "Дмитрий Смирнов",
-                    readTime: "15 мин"
-                },
-                {
-                    id: 4,
-                    title: "Защита от SQL-инъекций: полное руководство",
-                    excerpt: "Исчерпывающее руководство по защите ваших веб-приложений от SQL-инъекций. Практические примеры и лучшие практики.",
-                    category: "security",
-                    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                    date: "8 ноября 2023",
-                    author: "Ольга Козлова",
-                    readTime: "10 мин"
-                },
-                {
-                    id: 5,
-                    title: "Оптимизация производительности веб-приложений",
-                    excerpt: "Проверенные методы увеличения скорости загрузки и отзывчивости веб-приложений. Кэширование, lazy loading и другие техники.",
-                    category: "web",
-                    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                    date: "5 ноября 2023",
-                    author: "Иван Сидоров",
-                    readTime: "14 мин"
-                },
-                {
-                    id: 6,
-                    title: "Введение в машинное обучение на Python",
-                    excerpt: "Практическое руководство по началу работы с машинным обучением с использованием библиотек Scikit-learn и Pandas.",
-                    category: "ai",
-                    image: "https://images.unsplash.com/photo-1526379879527-8559ecfcaec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80",
-                    date: "3 ноября 2023",
-                    author: "Анна Кузнецова",
-                    readTime: "18 мин"
-                }
-            ];
-
-            const postsContainer = document.getElementById('posts');
-            const recentPostsContainer = document.querySelector('.recent-posts');
-            const categoryFilter = document.getElementById('category-filter');
-
-            // Функция для отображения статей
-            function displayPosts(posts) {
-                postsContainer.innerHTML = '';
-                
-                if (posts.length === 0) {
-                    postsContainer.innerHTML = '<p class="no-posts">Статьи не найдены</p>';
-                    return;
-                }
-                
-                posts.forEach(post => {
-                    const postCard = document.createElement('article');
-                    postCard.className = 'post-card';
-                    
-                    postCard.innerHTML = `
-                        <img src="${post.image}" alt="${post.title}" class="post-img">
-                        <div class="post-content">
-                            <span class="post-category">${getCategoryName(post.category)}</span>
-                            <h3 class="post-title">${post.title}</h3>
-                            <p class="post-excerpt">${post.excerpt}</p>
-                            <div class="post-meta">
-                                <span>${post.date}</span>
-                                <span>${post.readTime}</span>
-                            </div>
-                        </div>
-                    `;
-                    
-                    postsContainer.appendChild(postCard);
-                });
-            }
-            
-            // Функция для отображения последних статей в сайдбаре
-            function displayRecentPosts() {
-                // Берем 3 последние статьи
-                const recentPosts = [...blogPosts].sort((a, b) => b.id - a.id).slice(0, 3);
-                
-                recentPostsContainer.innerHTML = '';
-                
-                recentPosts.forEach(post => {
-                    const recentPost = document.createElement('div');
-                    recentPost.className = 'recent-post';
-                    
-                    recentPost.innerHTML = `
-                        <img src="${post.image}" alt="${post.title}">
-                        <div>
-                            <a href="#" class="recent-post-title">${post.title}</a>
-                            <div class="recent-post-date">${post.date}</div>
-                        </div>
-                    `;
-                    
-                    recentPostsContainer.appendChild(recentPost);
-                });
-            }
-            
-            // Получить русское название категории
-            function getCategoryName(category) {
-                const categories = {
-                    'programming': 'Программирование',
-                    'web': 'Веб-разработка',
-                    'ai': 'ИИ',
-                    'security': 'Кибербезопасность'
-                };
-                
-                return categories[category] || category;
-            }
-            
-            // Фильтрация статей по категории
-            categoryFilter.addEventListener('change', function() {
-                const selectedCategory = this.value;
-                
-                if (selectedCategory === 'all') {
-                    displayPosts(blogPosts);
-                } else {
-                    const filteredPosts = blogPosts.filter(post => post.category === selectedCategory);
-                    displayPosts(filteredPosts);
-                }
-            });
-            
-            // Инициализация
-            displayPosts(blogPosts);
-            displayRecentPosts();
-            
-            // Обработка формы подписки
-            const newsletterForm = document.querySelector('.newsletter-form');
-            newsletterForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = this.querySelector('input').value;
-                alert(`Спасибо за подписку! На адрес ${email} будут приходить уведомления о новых статьях.`);
-                this.reset();
-            });
-        });
-    </script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
